@@ -1,0 +1,122 @@
+definitions:
+  User:
+    properties:
+      birth:
+        type: string
+      cpf:
+        type: string
+      ddd:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      phone:
+        type: string
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+paths:
+  /user:
+    post:
+      consumes:
+      - application/json
+      description: '- Create a user'
+      parameters:
+      - description: User to be created
+        in: body
+        name: User
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/User'
+      security:
+      - ApiKeyAuth: []
+      summary: '- Create user'
+      tags:
+      - '- User'
+  /user/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: '- Delete a user by id'
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: ""
+      security:
+      - ApiKeyAuth: []
+      summary: '- Delete user'
+      tags:
+      - '- User'
+    get:
+      consumes:
+      - application/json
+      description: Get user by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+      security:
+      - ApiKeyAuth: []
+      summary: '- Get one user'
+      tags:
+      - '- User'
+    put:
+      consumes:
+      - application/json
+      description: '- Update a user by id'
+      parameters:
+      - description: User to be updated
+        in: body
+        name: User
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+      security:
+      - ApiKeyAuth: []
+      summary: '- Update user'
+      tags:
+      - '- User'
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
